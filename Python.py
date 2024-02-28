@@ -37,6 +37,13 @@ class Game :
     def getMot(self) :
         return self.Mot
     
+    def getPseudo(self) :
+        return self.Pseudo
+    
+    
+
+
+    
 Pendu = Game()
 Pendu.ChoixMot()
 Pendu.underscore(Pendu.getMot())
