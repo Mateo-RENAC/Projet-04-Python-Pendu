@@ -2,10 +2,10 @@ class Game :
 
     def __init__(self) :
         '''Initialise les variables principale du jeux'''
-        self.Pseudo = None
-        self.Mot = None
-        self.Listunderscore = []
-        self.Listelettre = []
+        self.pseudo = None
+        self.mot = None
+        self.listUnderscore = []
+        self.listeLettre = []
         return
 
     def DemandePseudo(self):
@@ -14,7 +14,7 @@ class Game :
         un Pseudonyme et le met 
         dans la variable Pseudo'''
 
-        self.Pseudo = input("Choissisez un Pseudonyme :\n")
+        self.pseudo = input("Choissisez un Pseudonyme :\n")
         return
     
     def Underscore(self, motacacher):
@@ -27,31 +27,41 @@ class Game :
 
         taillemot = len(motacacher)
         for i in range(taillemot):
-            self.Listunderscore.append("_")
-        self.Listunderscore = ''.join(self.Listunderscore)
-        print(self.Listunderscore)
-        return self.Listunderscore
+            self.listUnderscore.append("_")
+        self.listUnderscore = ''.join(self.listUnderscore)
+        print(self.listUnderscore)
+        return self.listUnderscore
 
+    def EstdansListLettreEntree(self,lettre):
+        '''EstdansListLettreEntree renvoie un booléen si la lettre en paramètre est dans Listlettre'''
+        for i in self.listeLettre :
+            if self.listeLettre[i] == lettre :
+                return True
+        return False
 
     def ChoixMot(self):
         '''Demande a l'utilisateur le mot qui devra être trouvé'''
-        self.Mot = input("Choissisez un mot \n")
+
+        self.mot = input("Choissisez un mot \n")
         return
 
 
     def GetListeLettreEntree(self) :
         '''retourne la liste des lettre déjà entrée'''
-        return self.Listelettre
+
+        return self.listeLettre
 
 
     def GetMot(self) :
         '''retourne le mot qui doit être trouvé'''
-        return self.Mot
+
+        return self.mot
 
 
     def GetPseudo(self) :
         '''retourne le pseudonyme de l'utilisateur'''
-        return self.Pseudo
+
+        return self.pseudo
     
     
 
