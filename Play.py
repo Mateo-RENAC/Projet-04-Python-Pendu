@@ -13,6 +13,7 @@ def Play() :
             print(Pendu.GetListeLettreEntree())
         print("Nombre d'essais : " ,essais)
         lettreessayer = input("entrez une lettre \n")
+        lettreessayer(str(lettreessayer))
         if Pendu.EstdansListLettreEntree(lettreessayer) :
             print("Déjà rentrée essayez une autre lettre")
         elif Pendu.EstDansLeMot(lettreessayer,Pendu.mot) == False :
