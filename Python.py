@@ -22,10 +22,11 @@ class Game :
         liste de underscore de 
         même taille'''
         taillemot = len(motacacher)
-        underscore = []
-        for i in taillemot :
-            underscore[i].append("_")
-        return underscore
+        self.Listunderscore = []
+        for i in range(taillemot-1) :
+            self.Listunderscore[i].append("_")
+        str(self.Listunderscore)
+        return self.Listunderscore
     
     def ChoixMot(self):
         Mot = input("Choissisez un mot ")
