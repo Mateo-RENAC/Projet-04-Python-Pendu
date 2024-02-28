@@ -1,9 +1,9 @@
 class Game :
 
-    Pseudo = None
-    Mot = None
-
     def __init__(self) :
+        self.Pseudo = None
+        self.Mot = None
+        self.Listunderscore = None
         return
 
     def DemandePseudo(self):
@@ -11,10 +11,10 @@ class Game :
         Demande à l'utilisateur
         un Pseudonyme et le met 
         dans la variable Pseudo'''
-        Pseudo = input("Choissisez un Pseudonyme :")
+        self.Pseudo = input("Choissisez un Pseudonyme :\n")
         return
     
-    def underscore(self,motacacher) :
+    def underscore(self, motacacher):
         '''underscore(motcacher)
         prend en paramètre une 
         chaine de caractère et 
@@ -23,18 +23,23 @@ class Game :
         même taille'''
         taillemot = len(motacacher)
         self.Listunderscore = []
-        for i in range(taillemot-1) :
-            self.Listunderscore[i].append("_")
-        str(self.Listunderscore)
+        for i in range(taillemot):
+            self.Listunderscore.append("_")
+        self.Listunderscore = ''.join(self.Listunderscore)
+        print(self.Listunderscore)
         return self.Listunderscore
+
     
     def ChoixMot(self):
-        Mot = input("Choissisez un mot ")
-        return Mot
+        self.Mot = input("Choissisez un mot \n")
+        return
+    
+    def getMot(self) :
+        return self.Mot
     
 Pendu = Game()
 Pendu.ChoixMot()
-Pendu.underscore()
+Pendu.underscore(Pendu.getMot())
 
 
 
