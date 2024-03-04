@@ -2,6 +2,7 @@ import sqlite3
 from datetime import datetime
 import random
 
+
 def ObtenirMotAleatoire(niveau_difficulte):
     '''Sélectionne aléatoirement un mot depuis 
     la base de données en fonction du niveau de difficulté'''
@@ -103,7 +104,6 @@ def SauvegarderScore(Pseudo, Resultat, Difficulte):
     return 'SAVE_SUCCESS'
 
 
-
 def AfficherScoresBase():
     '''Affiche les Scores des joueurs'''
     # Se connecter à la base de données
@@ -123,7 +123,6 @@ def AfficherScoresBase():
 
     # Fermeture de la connexion
     conn.close()
-    return
     
 
 def AfficherScoresAlphabetique():

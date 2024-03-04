@@ -41,6 +41,6 @@ def commandesScore() :
           "-Alpha : Ordonne par ordre alphabétique\n"
           "-Score : Ordonne par ordre de score croissant\n"
           "-ScoreDec : Ordonne par ordre de score décroissant\n"
-          "-Diffculté : Ordonne les parties par difficulté\n"
+          "-Difficulté : Ordonne les parties par difficulté\n"
           "-exit : Sort de l'affichage des scores et allume le jeux\n")
 
