@@ -110,66 +110,64 @@ def AfficherScoresBase():
     conn = sqlite3.connect("PenduDatabase.db")
     cursor = conn.cursor()
 
-    # Compter le nombre de victoires pour chaque utilisateur
-    cursor.execute("""SELECT Utilisateur.nom_use, COUNT(Score.id_Score) AS Victoires
-                    FROM Utilisateur
-                    LEFT JOIN Score ON Utilisateur.id_use = Score.id_use_FK
-                    WHERE Score.Result = 'Victoire'
-                    GROUP BY Utilisateur.id_use""")
+    # Compter le nombre de victoires et de défaites pour chaque utilisateur
+    cursor.execute("""SELECT Utilisateur.nom_use, 
+                             SUM(CASE WHEN Score.Result = 'Victoire' THEN 1 ELSE 0 END) AS Victoires,
+                             SUM(CASE WHEN Score.Result = 'Défaite' THEN 1 ELSE 0 END) AS Defaites
+                      FROM Utilisateur
+                      LEFT JOIN Score ON Utilisateur.id_use = Score.id_use_FK
+                      GROUP BY Utilisateur.id_use""")
 
     # Afficher le résultat
     for row in cursor.fetchall():
-        print("Nom:", row[0], "| Nombre de victoires:", row[1])
+        print("Nom:", row[0], "| Nombre de victoires:", row[1], "| Nombre de défaites:", row[2])
 
     # Fermeture de la connexion
     conn.close()
-    
 
 def AfficherScoresAlphabetique():
-    '''Affiche les scores des joueurs ordonnés 
-    par ordre alphabétique des noms d'utilisateur'''
+    '''Affiche les scores des joueurs ordonnés par ordre alphabétique des noms d'utilisateur'''
     # Se connecter à la base de données
     conn = sqlite3.connect("PenduDatabase.db")
     cursor = conn.cursor()
 
-    # Sélectionner les noms d'utilisateur et le nombre de victoires
-    cursor.execute("""SELECT Utilisateur.nom_use, COUNT(Score.id_Score) AS Victoires
-                    FROM Utilisateur
-                    LEFT JOIN Score ON Utilisateur.id_use = Score.id_use_FK
-                    WHERE Score.Result = 'Victoire'
-                    GROUP BY Utilisateur.id_use
-                    ORDER BY Utilisateur.nom_use""")
+    # Sélectionner les noms d'utilisateur et le nombre de victoires et de défaites
+    cursor.execute("""SELECT Utilisateur.nom_use, 
+                             SUM(CASE WHEN Score.Result = 'Victoire' THEN 1 ELSE 0 END) AS Victoires,
+                             SUM(CASE WHEN Score.Result = 'Défaite' THEN 1 ELSE 0 END) AS Defaites
+                      FROM Utilisateur
+                      LEFT JOIN Score ON Utilisateur.id_use = Score.id_use_FK
+                      GROUP BY Utilisateur.id_use
+                      ORDER BY Utilisateur.nom_use""")
 
     # Afficher le résultat
     for row in cursor.fetchall():
-        print("Nom:", row[0], "| Nombre de victoires:", row[1])
+        print("Nom:", row[0], "| Nombre de victoires:", row[1], "| Nombre de défaites:", row[2])
 
     # Fermer la connexion
     conn.close()
-
 
 def AfficherScoresParScoreDecroissant():
-    '''Affiche les scores chaque joueur ordonnés
-    par le nombre de victoires en ordre décroissant'''
+    '''Affiche les scores chaque joueur ordonnés par le nombre de victoires en ordre décroissant'''
     # Se connecter à la base de données
     conn = sqlite3.connect("PenduDatabase.db")
     cursor = conn.cursor()
 
-    # Sélectionner les noms d'utilisateur et le nombre de victoires, ordonnés par nombre de victoires en ordre décroissant
-    cursor.execute("""SELECT Utilisateur.nom_use, COUNT(Score.id_Score) AS Victoires
-                    FROM Utilisateur
-                    LEFT JOIN Score ON Utilisateur.id_use = Score.id_use_FK
-                    WHERE Score.Result = 'Victoire'
-                    GROUP BY Utilisateur.id_use
-                    ORDER BY Victoires DESC""")
+    # Sélectionner les noms d'utilisateur, le nombre de victoires et de défaites, ordonnés par nombre de victoires en ordre décroissant
+    cursor.execute("""SELECT Utilisateur.nom_use, 
+                             SUM(CASE WHEN Score.Result = 'Victoire' THEN 1 ELSE 0 END) AS Victoires,
+                             SUM(CASE WHEN Score.Result = 'Défaite' THEN 1 ELSE 0 END) AS Defaites
+                      FROM Utilisateur
+                      LEFT JOIN Score ON Utilisateur.id_use = Score.id_use_FK
+                      GROUP BY Utilisateur.id_use
+                      ORDER BY Victoires DESC""")
 
     # Afficher le résultat
     for row in cursor.fetchall():
-        print("Nom:", row[0], "| Nombre de victoires:", row[1])
+        print("Nom:", row[0], "| Nombre de victoires:", row[1], "| Nombre de défaites:", row[2])
 
     # Fermer la connexion
     conn.close()
-
 
 def AfficherPartiesParDifficulte():
     '''Affiche les parties de chaque joueur ordonnées par niveau de difficulté (Difficile, Moyen, Facile)'''
@@ -193,6 +191,7 @@ def AfficherPartiesParDifficulte():
 
     # Fermer la connexion
     conn.close()
+
 
 
 def RemplirTableMotDepuisFichier(nom_fichier):
