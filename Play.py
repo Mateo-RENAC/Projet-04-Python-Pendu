@@ -24,8 +24,9 @@ def Play() :
         lettreessayer = str(lettreessayer)
 
         if lettreessayer == 'restart' :
-            Play()
-        if lettreessayer == 'exit' : break
+            return Play()
+        if lettreessayer == 'exit' :
+            return 'EXIT_SUCCESS'
 
         elif Pendu.EstdansListLettreEntree(lettreessayer) :
             print("Déjà rentrée essayez une autre lettre")
@@ -38,12 +39,9 @@ def Play() :
         AjouterScore(Pendu.GetPseudo(), 'oui')
         return
     
-    if essais >= 8 :
+    else:
         print("Pendu ! le mot était : " + Pendu.mot)
         AjouterScore(Pendu.GetPseudo(), 'non')
         return
-    
-    else :
-        return 'EXIT_SUCCESS'
 
 Play()
