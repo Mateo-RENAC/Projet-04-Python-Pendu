@@ -14,6 +14,7 @@ def Play() :
 
     while essais < 8 and Pendu.GetMot() != Pendu.GetUnderscore() :
         clear_console()
+        print(Pendu.mot)
         echaffaud(essais)                                                       #Affiche l'échaffaud
         print(Pendu.GetUnderscore())                                            #Affiche le mot transformé en underscore
         if len(Pendu.GetListeLettreEntree()) < 0 :
