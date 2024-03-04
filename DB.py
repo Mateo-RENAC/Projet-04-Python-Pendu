@@ -4,7 +4,7 @@ import django
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'PenduDjango.PenduDjango.settings')
 django.setup()
 
-from PenduDjango.PenduDjangoapp.models import ModelScore
+from PenduDjangoRacine.PenduDjangoapp.models import ModelScore
 from django.db.models import Count, Case, When, CharField, Value, IntegerField
 
 def AjouterScore(nomdujoueur, resultat) :
