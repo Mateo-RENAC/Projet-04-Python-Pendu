@@ -1,4 +1,5 @@
 #Ici je vais gérer les requêtes avec Djangos
+
 from PenduDjango.PenduDjangoapp.models import ModelScore
 from django.db.models import Count, Case, When, CharField, Value, IntegerField
 
