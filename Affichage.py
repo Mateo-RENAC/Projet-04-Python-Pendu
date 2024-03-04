@@ -13,34 +13,34 @@ def echaffaud(Etat) :
     '''
     if Etat == 0:
         print(" ==========Y= ")
-    if Etat <= 1 :
+    if Etat >= 1 :
         print(" ||/       |  ")
-    if Etat <= 2 :
+    if Etat >= 2 :
         print(" ||/       |  ")
-    if Etat <= 3 :
+    if Etat >= 3 :
         print(" ||        0  ")
-    if Etat <= 4 :
+    if Etat >= 4 :
         print(" ||       /|\ ")
-    if Etat <= 5 :
+    if Etat >= 5 :
         print(" ||        |")
-    if Etat <= 6 :
+    if Etat >= 6 :
         print(" ||       / \ ")
-    if Etat <= 7 :                    
+    if Etat >= 7 :                    
         print("/||           ")
-    if Etat <= 8 :
+    if Etat >= 8 :
         print("==============\n")
 
 def commandesPlay() :
     print("Commandes : \n"
           "-exit : vous sort du jeux sans sauvegarder\n"
           "-restart : recommence le jeux, le jeux en cours ne sera pas sauvegardé\n"
-          "-scores : affiche le tableau des scores")
+          "-scores : affiche le tableau des scores\n")
 
 def commandesScore() :
     print("Commandes : \n"
-          "-Alpha : Ordonne par ordre alphabétique"
-          "-Score : Ordonne par ordre de score croissant"
-          "-ScoreDec : Ordonne par ordre de score décroissant"
-          "-Diffculté : Ordonne les parties par difficulté"
-          "-exit : Sort de l'affichage des scores et allume le jeux")
+          "-Alpha : Ordonne par ordre alphabétique\n"
+          "-Score : Ordonne par ordre de score croissant\n"
+          "-ScoreDec : Ordonne par ordre de score décroissant\n"
+          "-Diffculté : Ordonne les parties par difficulté\n"
+          "-exit : Sort de l'affichage des scores et allume le jeux\n")
 

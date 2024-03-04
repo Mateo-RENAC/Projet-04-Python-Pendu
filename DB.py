@@ -172,29 +172,25 @@ def AfficherScoresParScoreDecroissant():
     conn.close()
 
 
-def AfficherScoresParDifficulte():
-    '''Affiche les scores des parties de 
-    chaque joueur ordonnés par niveau de difficulté (Difficile, Moyen, Facile)'''
+def AfficherPartiesParDifficulte():
+    '''Affiche les parties de chaque joueur ordonnées par niveau de difficulté (Difficile, Moyen, Facile)'''
     # Se connecter à la base de données
     conn = sqlite3.connect("PenduDatabase.db")
     cursor = conn.cursor()
 
-    # Sélectionner les noms d'utilisateur, le nombre de victoires et la difficulté, ordonnés par niveau de difficulté
-    cursor.execute("""SELECT Utilisateur.nom_use, COUNT(Score.id_Score) AS Victoires, Score.Difficulte
-                    FROM Utilisateur
-                    LEFT JOIN Score ON Utilisateur.id_use = Score.id_use_FK
-                    WHERE Score.Result = 'Victoire'
-                    GROUP BY Utilisateur.id_use
-                    ORDER BY 
-                        CASE Score.Difficulte
-                            WHEN 'Difficile' THEN 1
-                            WHEN 'Moyen' THEN 2
-                            WHEN 'Facile' THEN 3
-                        END""")
+    # Sélectionner les noms d'utilisateur, le nombre de parties et la difficulté, ordonnés par niveau de difficulté
+    cursor.execute("""SELECT Utilisateur.nom_use, 
+                             SUM(CASE WHEN Score.Difficulte = 'Difficile' THEN 1 ELSE 0 END) AS Parties_Difficile,
+                             SUM(CASE WHEN Score.Difficulte = 'Moyen' THEN 1 ELSE 0 END) AS Parties_Moyen,
+                             SUM(CASE WHEN Score.Difficulte = 'Facile' THEN 1 ELSE 0 END) AS Parties_Facile
+                      FROM Utilisateur
+                      LEFT JOIN Score ON Utilisateur.id_use = Score.id_use_FK
+                      GROUP BY Utilisateur.nom_use
+                      ORDER BY Utilisateur.nom_use""")
 
     # Afficher le résultat
     for row in cursor.fetchall():
-        print("Nom:", row[0], "| Nombre de victoires:", row[1], "| Difficulté:", row[2])
+        print("Nom:", row[0], "| Parties Difficiles:", row[1], "| Parties Moyennes:", row[2], "| Parties Faciles:", row[3])
 
     # Fermer la connexion
     conn.close()

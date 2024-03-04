@@ -17,6 +17,7 @@ def Play() :
         print(Pendu.mot)
         echaffaud(essais)                                                       #Affiche l'échaffaud
         print(Pendu.GetUnderscore())                                            #Affiche le mot transformé en underscore
+        commandesPlay()
         if len(Pendu.GetListeLettreEntree()) < 0 :
             print(Pendu.GetListeLettreEntree())                                 #Affiche la liste des lettres entrées si celle-ci a au moins 1 lettre
         print("Nombre d'essais : " ,essais)                                     #Affiche le nombre d'essais
@@ -65,7 +66,7 @@ def ScoreFonct() :
             AfficherScoresParScoreDecroissant()
             entree = input()
         elif entree == 'Difficulté' :
-            AfficherScoresParDifficulte()
+            AfficherPartiesParDifficulte()
             entree = input()
         else :
             print("Commande Non reconnue")
