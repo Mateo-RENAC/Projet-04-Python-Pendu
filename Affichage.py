@@ -7,6 +7,10 @@ def clear_console():
 
 
 def echaffaud(Etat) :
+    '''
+    En Fonction du nombre d'essais,
+    l'échafaud se construit
+    '''
     if Etat == 0:
         print(" ==========Y= ")
     if Etat <= 1 :
