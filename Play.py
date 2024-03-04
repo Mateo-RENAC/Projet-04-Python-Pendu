@@ -40,12 +40,12 @@ def Play() :
 
     if Pendu.GetMot() == Pendu.GetUnderscore() :
         print("Victoire ! le mot était bien : " + Pendu.mot)
-        SauvegarderScore(Pendu.GetPseudo(), 'oui', Pendu.Difficulty)
+        SauvegarderScore(Pendu.GetPseudo(), 'Victoire', Pendu.Difficulty)
         return
     
     else:
         print("Pendu ! le mot était : " + Pendu.mot)
-        SauvegarderScore(Pendu.GetPseudo(), 'non', Pendu.Difficulty)
+        SauvegarderScore(Pendu.GetPseudo(), 'Défaite', Pendu.Difficulty)
         return
 
 
