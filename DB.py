@@ -57,4 +57,5 @@ def AfficherMeilleursScore():
 
     for score in meilleurs_scores:
         print(f"Nom: {score['nom']}, Victoire: {score['victoire']}")
+    return
 
