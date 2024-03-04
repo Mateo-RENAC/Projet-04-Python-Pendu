@@ -1,4 +1,7 @@
 from PenduRules import *
+from Affichage import *
+import os
+
 
 def Play() :
     '''Fonction permettant de faire fonctionner le jeux du Pendu'''
@@ -9,12 +12,12 @@ def Play() :
     essais = 0
 
     while essais < 5 and Pendu.GetMot() != Pendu.GetUnderscore() :
-        print(Pendu.GetUnderscore())
-        
+        clear_console()
+        print(Pendu.GetUnderscore())                                            #Affiche le mot transformé en underscore
         if len(Pendu.GetListeLettreEntree()) < 0 :
-            print(Pendu.GetListeLettreEntree())
-        print("Nombre d'essais : " ,essais)
-        lettreessayer = input("entrez une lettre \n")
+            print(Pendu.GetListeLettreEntree())                                 #Affiche la liste des lettres entrées si celle-ci a au moins 1 lettre
+        print("Nombre d'essais : " ,essais)                                     #Affiche le nombre d'essais
+        lettreessayer = input("entrez une lettre \n")                           
 
         lettreessayer = str(lettreessayer)
 
