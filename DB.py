@@ -1,5 +1,31 @@
 import sqlite3
 from datetime import datetime
+import random
+
+def ObtenirMotAleatoire(niveau_difficulte):
+    '''Sélectionne aléatoirement un mot depuis 
+    la base de données en fonction du niveau de difficulté'''
+    # Se connecter à la base de données
+    conn = sqlite3.connect("PenduDatabase.db")
+    cursor = conn.cursor()
+
+    # Sélectionner un mot aléatoire en fonction du niveau de difficulté
+    if niveau_difficulte == 'Facile':
+        cursor.execute("SELECT mot FROM Mot WHERE LENGTH(mot) <= 6 ORDER BY RANDOM() LIMIT 1")
+    elif niveau_difficulte == 'Moyen':
+        cursor.execute("SELECT mot FROM Mot WHERE LENGTH(mot) > 6 AND LENGTH(mot) <= 8 ORDER BY RANDOM() LIMIT 1")
+    elif niveau_difficulte == 'Difficile':
+        cursor.execute("SELECT mot FROM Mot WHERE LENGTH(mot) > 8 ORDER BY RANDOM() LIMIT 1")
+    else:
+        raise ValueError("Niveau de difficulté invalide. Les valeurs valides sont 'Facile', 'Moyen' et 'Difficile'.")
+
+    # Récupérer le mot sélectionné aléatoirement
+    mot = cursor.fetchone()[0]
+
+    # Fermer la connexion
+    conn.close()
+
+    return mot
 
 
 def CreerLaBaseDeDonnee():
@@ -147,7 +173,8 @@ def AfficherScoresParScoreDecroissant():
 
 
 def AfficherScoresParDifficulte():
-    '''Affiche les scores des parties de chaque joueur ordonnés par niveau de difficulté (Difficile, Moyen, Facile)'''
+    '''Affiche les scores des parties de 
+    chaque joueur ordonnés par niveau de difficulté (Difficile, Moyen, Facile)'''
     # Se connecter à la base de données
     conn = sqlite3.connect("PenduDatabase.db")
     cursor = conn.cursor()
