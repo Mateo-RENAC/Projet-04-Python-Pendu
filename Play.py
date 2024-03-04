@@ -8,7 +8,7 @@ def Play() :
     '''Fonction permettant de faire fonctionner le jeux du Pendu'''
     Pendu = Game()
     Pendu.DemandePseudo()
-    Pendu.Rando
+    Pendu.MotRandom()
     Pendu.Underscore(Pendu.mot)
     essais = 0
 
