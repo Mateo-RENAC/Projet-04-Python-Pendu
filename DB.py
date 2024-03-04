@@ -74,7 +74,7 @@ def SauvegarderScore(Pseudo, Resultat, Difficulte):
     conn.commit()
     conn.close()
 
-def CompterVictoires():
+def AfficherScoresBase():
     '''Affiche les Scores des joueurs'''
     # Se connecter à la base de données
     conn = sqlite3.connect("PenduDatabase.db")
@@ -94,3 +94,76 @@ def CompterVictoires():
     # Fermeture de la connexion
     conn.close()
 
+def AfficherScoresAlphabetique():
+    '''Affiche les scores des joueurs ordonnés 
+    par ordre alphabétique des noms d'utilisateur'''
+    # Se connecter à la base de données
+    conn = sqlite3.connect("PenduDatabase.db")
+    cursor = conn.cursor()
+
+    # Sélectionner les noms d'utilisateur et le nombre de victoires
+    cursor.execute("""SELECT Utilisateur.nom_use, COUNT(Score.id_Score) AS Victoires
+                    FROM Utilisateur
+                    LEFT JOIN Score ON Utilisateur.id_use = Score.id_use_FK
+                    WHERE Score.Result = 'Victoire'
+                    GROUP BY Utilisateur.id_use
+                    ORDER BY Utilisateur.nom_use""")
+
+    # Afficher le résultat
+    for row in cursor.fetchall():
+        print("Nom:", row[0], "| Nombre de victoires:", row[1])
+
+    # Fermer la connexion
+    conn.close()
+
+
+def AfficherScoresParScoreDecroissant():
+    '''Affiche les scores chaque joueur ordonnés
+    par le nombre de victoires en ordre décroissant'''
+    # Se connecter à la base de données
+    conn = sqlite3.connect("PenduDatabase.db")
+    cursor = conn.cursor()
+
+    # Sélectionner les noms d'utilisateur et le nombre de victoires, ordonnés par nombre de victoires en ordre décroissant
+    cursor.execute("""SELECT Utilisateur.nom_use, COUNT(Score.id_Score) AS Victoires
+                    FROM Utilisateur
+                    LEFT JOIN Score ON Utilisateur.id_use = Score.id_use_FK
+                    WHERE Score.Result = 'Victoire'
+                    GROUP BY Utilisateur.id_use
+                    ORDER BY Victoires DESC""")
+
+    # Afficher le résultat
+    for row in cursor.fetchall():
+        print("Nom:", row[0], "| Nombre de victoires:", row[1])
+
+    # Fermer la connexion
+    conn.close()
+
+
+def AfficherScoresParDifficulte():
+    '''Affiche les scores des parties de chaque joueur ordonnés par niveau de difficulté (Difficile, Moyen, Facile)'''
+    # Se connecter à la base de données
+    conn = sqlite3.connect("PenduDatabase.db")
+    cursor = conn.cursor()
+
+    # Sélectionner les noms d'utilisateur, le nombre de victoires et la difficulté, ordonnés par niveau de difficulté
+    cursor.execute("""SELECT Utilisateur.nom_use, COUNT(Score.id_Score) AS Victoires, Score.Difficulte
+                    FROM Utilisateur
+                    LEFT JOIN Score ON Utilisateur.id_use = Score.id_use_FK
+                    WHERE Score.Result = 'Victoire'
+                    GROUP BY Utilisateur.id_use
+                    ORDER BY 
+                        CASE Score.Difficulte
+                            WHEN 'Difficile' THEN 1
+                            WHEN 'Moyen' THEN 2
+                            WHEN 'Facile' THEN 3
+                        END""")
+
+    # Afficher le résultat
+    for row in cursor.fetchall():
+        print("Nom:", row[0], "| Nombre de victoires:", row[1], "| Difficulté:", row[2])
+
+    # Fermer la connexion
+    conn.close()
+    
+        
