@@ -40,5 +40,6 @@ def commandesScore() :
     print("Commandes : \n"
           "-Alpha : Ordonne par ordre alphabétique"
           "-Score : Ordonne par ordre de score croissant"
-          "-ScoreDec : Ordonne par ordre de score décroissant")
+          "-ScoreDec : Ordonne par ordre de score décroissant"
+          "-Diffculté : Ordonne les parties par difficulté")
 

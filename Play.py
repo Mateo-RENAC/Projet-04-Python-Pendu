@@ -44,4 +44,31 @@ def Play() :
         SauvegarderScore(Pendu.GetPseudo(), 'non')
         return
 
+
+def ScoreFonct() :
+    '''Un affichage pour les Scores'''
+    clear_console()
+    commandesScore()
+    entree = input()
+    while entree != 'exit' :
+        if entree == 'Alpha' :
+            AfficherScoresAlphabetique()
+            entree = input()
+        elif entree == 'Score' :
+            AfficherScoresBase()
+            entree = input()
+        elif entree == 'ScoreDec' :
+            AfficherScoresParScoreDecroissant()
+            entree = input()
+        elif entree == 'Difficulté' :
+            AfficherScoresParDifficulte()
+            entree = input()
+        else :
+            print("Commande Non reconnue")
+            return ScoreFonct
+    clear_console()
+    return Play()
+    
+
+
 Play()
