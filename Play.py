@@ -36,12 +36,12 @@ def Play() :
 
     if Pendu.GetMot() == Pendu.GetUnderscore() :
         print("Victoire ! le mot était bien : " + Pendu.mot)
-        AjouterScore(Pendu.GetPseudo(), 'oui')
+        SauvegarderScore(Pendu.GetPseudo(), 'oui')
         return
     
     else:
         print("Pendu ! le mot était : " + Pendu.mot)
-        AjouterScore(Pendu.GetPseudo(), 'non')
+        SauvegarderScore(Pendu.GetPseudo(), 'non')
         return
 
 Play()

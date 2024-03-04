@@ -49,6 +49,7 @@ def CreerLaBaseDeDonnee():
     
     # Fermer la connexion
     conn.close()
+    return 'CREATE_DATABASE_SUCCESS'
 
 
 def SauvegarderScore(Pseudo, Resultat, Difficulte):
@@ -73,6 +74,9 @@ def SauvegarderScore(Pseudo, Resultat, Difficulte):
     # Commit et fermer la connexion
     conn.commit()
     conn.close()
+    return 'SAVE_SUCCESS'
+
+
 
 def AfficherScoresBase():
     '''Affiche les Scores des joueurs'''
@@ -93,6 +97,8 @@ def AfficherScoresBase():
 
     # Fermeture de la connexion
     conn.close()
+    return
+    
 
 def AfficherScoresAlphabetique():
     '''Affiche les scores des joueurs ordonnés 
@@ -165,5 +171,4 @@ def AfficherScoresParDifficulte():
 
     # Fermer la connexion
     conn.close()
-    
-        
+

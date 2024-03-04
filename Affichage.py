@@ -30,7 +30,15 @@ def echaffaud(Etat) :
     if Etat <= 8 :
         print("==============\n")
 
-def commandes() :
+def commandesPlay() :
     print("Commandes : \n"
           "-exit : vous sort du jeux sans sauvegarder\n"
-          "-restart : recommence le jeux, le jeux en cours ne sera pas sauvegardé\n")
+          "-restart : recommence le jeux, le jeux en cours ne sera pas sauvegardé\n"
+          "-scores : affiche le tableau des scores")
+
+def commandesScore() :
+    print("Commandes : \n"
+          "-Alpha : Ordonne par ordre alphabétique"
+          "-Score : Ordonne par ordre de score croissant"
+          "-ScoreDec : Ordonne par ordre de score décroissant")
+
