@@ -172,3 +172,19 @@ def AfficherScoresParDifficulte():
     # Fermer la connexion
     conn.close()
 
+
+def RemplirTableMotDepuisFichier(nom_fichier):
+    '''Remplit la table Mot à partir d'un fichier texte'''
+    # Se connecter à la base de données
+    conn = sqlite3.connect("PenduDatabase.db")
+    cursor = conn.cursor()
+
+    # Ouvrir le fichier texte et insérer chaque mot dans la table Mot
+    with open(nom_fichier, 'r') as file:
+        mots = file.readlines()
+        for mot in mots:
+            cursor.execute("INSERT INTO Mot (mot) VALUES (?)", (mot.strip(),))
+
+    # Commit et fermer la connexion
+    conn.commit()
+    conn.close()

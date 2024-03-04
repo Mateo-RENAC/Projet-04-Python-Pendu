@@ -27,6 +27,9 @@ def Play() :
             return Play()
         if lettreessayer == 'exit' :
             return 'EXIT_SUCCESS'
+        
+        if lettreessayer == 'scores' :
+            return ScoreFonct()
 
         elif Pendu.EstdansListLettreEntree(lettreessayer) :
             print("Déjà rentrée essayez une autre lettre")
