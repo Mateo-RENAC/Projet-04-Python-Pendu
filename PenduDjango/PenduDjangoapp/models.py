@@ -1,17 +1,7 @@
 from django.db import models
 
-# Create your models here.
+class VotreModele(models.Model):
+    id = models.AutoField(primary_key=True)
+    nom = models.CharField(max_length=20)
+    win = models.CharField(max_length=5, choices=[('oui', 'Oui'), ('non', 'Non')])
 
-# Dans le fichier models.py de votre application
-
-from django.db import models
-
-class Utilisateur(models.Model):
-    nom = models.CharField(max_length=10)
-
-class Score(models.Model):
-    utilisateur = models.ForeignKey(Utilisateur, on_delete=models.CASCADE)
-    win = models.CharField(max_length=3, choices=[("oui", "oui"), ("non", "non")])
-
-class Mot(models.Model):
-    mot = models.CharField(max_length=20)
