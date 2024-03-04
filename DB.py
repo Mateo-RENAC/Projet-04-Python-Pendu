@@ -1,8 +1,11 @@
 #Ici je vais gérer les requêtes avec Djangos
+import os
+import django
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'PenduDjango.PenduDjango.settings')
+django.setup()
 
 from PenduDjango.PenduDjangoapp.models import ModelScore
 from django.db.models import Count, Case, When, CharField, Value, IntegerField
-
 
 def AjouterScore(nomdujoueur, resultat) :
     '''Fonction qui envoie le score dans la base de donnée
@@ -59,4 +62,3 @@ def AfficherMeilleursScore():
     for score in meilleurs_scores:
         print(f"Nom: {score['nom']}, Victoire: {score['victoire']}")
     return
-

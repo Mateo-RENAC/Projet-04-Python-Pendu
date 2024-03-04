@@ -1,5 +1,6 @@
 from PenduRules import *
 from Affichage import *
+from DB import *
 import os
 
 
@@ -11,17 +12,22 @@ def Play() :
     Pendu.Underscore(Pendu.mot)
     essais = 0
 
-    while essais < 5 and Pendu.GetMot() != Pendu.GetUnderscore() :
+    while essais < 8 and Pendu.GetMot() != Pendu.GetUnderscore() :
         clear_console()
+        echaffaud(essais)                                                       #Affiche l'échaffaud
         print(Pendu.GetUnderscore())                                            #Affiche le mot transformé en underscore
         if len(Pendu.GetListeLettreEntree()) < 0 :
             print(Pendu.GetListeLettreEntree())                                 #Affiche la liste des lettres entrées si celle-ci a au moins 1 lettre
         print("Nombre d'essais : " ,essais)                                     #Affiche le nombre d'essais
-        lettreessayer = input("entrez une lettre \n")                           
-
+        lettreessayer = input("entrez une lettre \n")
+        #lettreessayer contient l'entrée du joueur                           
         lettreessayer = str(lettreessayer)
 
-        if Pendu.EstdansListLettreEntree(lettreessayer) :
+        if lettreessayer == 'restart' :
+            Play()
+        if lettreessayer == 'exit' : break
+
+        elif Pendu.EstdansListLettreEntree(lettreessayer) :
             print("Déjà rentrée essayez une autre lettre")
 
         elif Pendu.EstDansLeMot(lettreessayer,Pendu.mot) == False :
@@ -29,10 +35,15 @@ def Play() :
 
     if Pendu.GetMot() == Pendu.GetUnderscore() :
         print("Victoire ! le mot était bien : " + Pendu.mot)
+        AjouterScore(Pendu.GetPseudo(), 'oui')
+        return
+    
+    if essais >= 8 :
+        print("Pendu ! le mot était : " + Pendu.mot)
+        AjouterScore(Pendu.GetPseudo(), 'non')
         return
     
     else :
-        print("Pendu ! le mot était : " + Pendu.mot)
-        return
+        return 'EXIT_SUCCESS'
 
 Play()

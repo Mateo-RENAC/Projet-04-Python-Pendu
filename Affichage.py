@@ -29,3 +29,8 @@ def echaffaud(Etat) :
         print("/||           ")
     if Etat <= 8 :
         print("==============\n")
+
+def commandes() :
+    print("Commandes : \n"
+          "-exit : vous sort du jeux sans sauvegarder\n"
+          "-restart : recommence le jeux, le jeux en cours ne sera pas sauvegardé\n")
