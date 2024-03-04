@@ -48,25 +48,21 @@ class Game :
         self.listeLettre.append(lettre)
         return
 
-    def EstDansLeMot(self, lettre, mot) :
-        '''Fonction qui détecte si la lettre choisie est dans le mot choisie,
-        si c'est le cas elle remplace dans underscore la lettre a l'indexe de celle-ci et renvoie True
-        Sinon il renvoie False'''
-        for i in range(len(mot)) :
-            occurence = 0
-            if mot[i] == lettre :                       #Condition si la lettre est dans le mot
-                underscoretemp = []
-                for caractere in self.listUnderscore :  #Je créer une variable temporaire sous forme de liste pour pouvoir changer la chaine de caractère + facilement
-                    underscoretemp.append(caractere)
-                underscoretemp[i] = lettre
-                underscoretemp = ''.join(underscoretemp)    #Je transforme la liste temporaire en chaine de caractère
-                self.listUnderscore = underscoretemp
-                if occurence < 1 :
-                    self.AjouteLettre(lettre)
-                    occurence += 1    
-                return True
-        self.AjouteLettre(lettre)
-        return False
+    def EstDansLeMot(self, lettre, mot):
+        '''Fonction qui détecte si la lettre choisie est dans le mot choisi,
+        si c'est le cas elle remplace dans underscore la lettre à l'index de celle-ci et renvoie True
+        Sinon elle renvoie False'''
+
+        found = False  # Variable pour indiquer si la lettre a été trouvée dans le mot
+        for i in range(len(mot)):
+            if mot[i] == lettre:  # Condition si la lettre est dans le mot
+                self.listUnderscore = self.listUnderscore[:i] + lettre + self.listUnderscore[i + 1:]
+                found = True  # Indique que la lettre a été trouvée
+        if found:
+            self.AjouteLettre(lettre)  # Ajoute la lettre à la liste des lettres entrées
+        else:
+            self.AjouteLettre(lettre)  # Ajoute la lettre même si elle n'est pas trouvée dans le mot
+        return found
 
 
     def ChoixMot(self):
