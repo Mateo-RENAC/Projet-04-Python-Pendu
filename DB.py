@@ -111,12 +111,13 @@ def AfficherScoresBase():
     cursor = conn.cursor()
 
     # Compter le nombre de victoires et de défaites pour chaque utilisateur
-    cursor.execute("""SELECT Utilisateur.nom_use, 
+    cursor.execute("""SELECT DISTINCT Utilisateur.nom_use, 
                              SUM(CASE WHEN Score.Result = 'Victoire' THEN 1 ELSE 0 END) AS Victoires,
                              SUM(CASE WHEN Score.Result = 'Défaite' THEN 1 ELSE 0 END) AS Defaites
                       FROM Utilisateur
                       LEFT JOIN Score ON Utilisateur.id_use = Score.id_use_FK
-                      GROUP BY Utilisateur.id_use""")
+                      GROUP BY Utilisateur.id_use
+                      ORDER BY Victoires ASC""")
 
     # Afficher le résultat
     for row in cursor.fetchall():
@@ -132,7 +133,7 @@ def AfficherScoresAlphabetique():
     cursor = conn.cursor()
 
     # Sélectionner les noms d'utilisateur et le nombre de victoires et de défaites
-    cursor.execute("""SELECT Utilisateur.nom_use, 
+    cursor.execute("""SELECT DISTINCT Utilisateur.nom_use, 
                              SUM(CASE WHEN Score.Result = 'Victoire' THEN 1 ELSE 0 END) AS Victoires,
                              SUM(CASE WHEN Score.Result = 'Défaite' THEN 1 ELSE 0 END) AS Defaites
                       FROM Utilisateur
@@ -154,7 +155,7 @@ def AfficherScoresParScoreDecroissant():
     cursor = conn.cursor()
 
     # Sélectionner les noms d'utilisateur, le nombre de victoires et de défaites, ordonnés par nombre de victoires en ordre décroissant
-    cursor.execute("""SELECT Utilisateur.nom_use, 
+    cursor.execute("""SELECT DISTINCT Utilisateur.nom_use, 
                              SUM(CASE WHEN Score.Result = 'Victoire' THEN 1 ELSE 0 END) AS Victoires,
                              SUM(CASE WHEN Score.Result = 'Défaite' THEN 1 ELSE 0 END) AS Defaites
                       FROM Utilisateur
