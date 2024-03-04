@@ -10,6 +10,7 @@ class Game :
         self.mot = None
         self.listUnderscore = []
         self.listeLettre = []
+        self.Difficulty = None
         return
 
 
@@ -101,5 +102,6 @@ class Game :
         et utilise la fonction ObtenirMotAleatoire de DB.py 
         déposé ensuite dans self.mot'''
         Reponse = input("Qu'elle difficulté ?\n")
+        self.Difficulty = Reponse
         self.mot = ObtenirMotAleatoire(Reponse)
         return
