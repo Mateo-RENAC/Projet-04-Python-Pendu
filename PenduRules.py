@@ -46,10 +46,12 @@ class Game :
                 return True
         return False
 
+
     def AjouteLettre(self, lettre) :
         '''AjouteLettre ajoute la lettre choisie dans ListeLettreEntree'''
         self.listeLettre.append(lettre)
         return
+
 
     def EstDansLeMot(self, lettre, mot):
         '''Fonction qui détecte si la lettre choisie est dans le mot choisi,
@@ -101,7 +103,13 @@ class Game :
         '''Demande à l'utilisateur un niveau de difficulté
         et utilise la fonction ObtenirMotAleatoire de DB.py 
         déposé ensuite dans self.mot'''
-        Reponse = input("Qu'elle difficulté ?\n")
+        Reponse = input("Qu'elle difficulté ?\n"
+                        "-Facile\n"
+                        "-Moyen\n"
+                        "-Difficile\n")
+        if Reponse != "Facile" and Reponse != "Moyen" and Reponse != "Difficile" :
+            print ("Choissisez une difficulté Existante !")
+            return self.MotRandom()
         self.Difficulty = Reponse
         self.mot = ObtenirMotAleatoire(Reponse)
         return
