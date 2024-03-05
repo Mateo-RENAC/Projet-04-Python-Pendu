@@ -28,10 +28,7 @@ def Play() :
         if lettreessayer == 'restart' :
             return Play()
         if lettreessayer == 'exit' :
-            return 'EXIT_SUCCESS'
-        
-        if lettreessayer == 'scores' :
-            return ScoreFonct()
+            return EcranTitre()
 
         elif Pendu.EstdansListLettreEntree(lettreessayer) :
             print("Déjà rentrée essayez une autre lettre")
@@ -42,11 +39,13 @@ def Play() :
     if Pendu.GetMot() == Pendu.GetUnderscore() :
         print("Victoire ! le mot était bien : " + Pendu.mot)
         SauvegarderScore(Pendu.GetPseudo(), 'Victoire', Pendu.Difficulty)
+        FindePartie()
         return
     
     else:
         print("Pendu ! le mot était : " + Pendu.mot)
         SauvegarderScore(Pendu.GetPseudo(), 'Défaite', Pendu.Difficulty)
+        FindePartie()
         return
 
 
@@ -76,4 +75,38 @@ def ScoreFonct() :
     
 
 
-Play()
+def EcranTitre():
+    '''C'est l'écran Titre'''
+    AffichageIntro()
+    entree = input()
+    if entree == 'Jouer' :
+        return Play()
+    elif entree == 'Score' :
+        return ScoreFonct()
+    elif entree == 'Exit' :
+        return 'EXIT_SUCCESS'
+    else :
+        print("Commandes non reconnue")
+        clear_console()
+        return EcranTitre()
+    
+
+def FindePartie():
+    '''Permet de relancer une partie ou de retourner a l'écran Titre ou de quitter le programme'''
+    print("Commandes :\n"
+          "-Restart : Recommence le jeux \n"
+          "-Ecran : Retourne à l'écran Titre"
+          "-Exit : Sort du programme")
+    entree = input()
+    if entree == 'Restart' :
+        return Play()
+    if entree == 'Ecran' :
+        return EcranTitre()
+    if entree == 'Exit' :
+        return 'EXIT_SUCCESS'
+    else :
+        print("Commande non reconnue")
+        clear_console()
+        return FindePartie
+
+EcranTitre()
