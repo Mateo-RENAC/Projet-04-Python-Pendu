@@ -18,7 +18,7 @@ def Play() :
         echaffaud(essais)                                                       #Affiche l'échaffaud
         print(Pendu.GetUnderscore())                                            #Affiche le mot transformé en underscore
         commandesPlay()
-        if len(Pendu.GetListeLettreEntree()) < 0 :
+        if len(Pendu.GetListeLettreEntree()) > 0 :
             print(Pendu.GetListeLettreEntree())                                 #Affiche la liste des lettres entrées si celle-ci a au moins 1 lettre
         print("Nombre d'essais : " ,essais)                                     #Affiche le nombre d'essais
         lettreessayer = input("entrez une lettre \n")
@@ -95,7 +95,7 @@ def FindePartie():
     '''Permet de relancer une partie ou de retourner a l'écran Titre ou de quitter le programme'''
     print("Commandes :\n"
           "-Restart : Recommence le jeux \n"
-          "-Ecran : Retourne à l'écran Titre"
+          "-Ecran : Retourne à l'écran Titre \n"
           "-Exit : Sort du programme")
     entree = input()
     if entree == 'Restart' :

@@ -103,6 +103,7 @@ class Game :
         '''Demande à l'utilisateur un niveau de difficulté
         et utilise la fonction ObtenirMotAleatoire de DB.py 
         déposé ensuite dans self.mot'''
+        
         Reponse = input("Qu'elle difficulté ?\n"
                         "-Facile\n"
                         "-Moyen\n"

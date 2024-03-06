@@ -12,23 +12,23 @@ def echaffaud(Etat) :
     En Fonction du nombre d'essais,
     l'échafaud se construit
     '''
-    if Etat == 0:
+    if Etat == 8:
         print(" ==========Y= ")
-    if Etat >= 1 :
+    if Etat >= 7 :
         print(" ||/       |  ")
-    if Etat >= 2 :
+    if Etat >= 6 :
         print(" ||/       |  ")
-    if Etat >= 3 :
+    if Etat >= 5 :
         print(" ||        0  ")
     if Etat >= 4 :
         print(" ||       /|\ ")
-    if Etat >= 5 :
+    if Etat >= 3 :
         print(" ||        |")
-    if Etat >= 6 :
+    if Etat >= 2 :
         print(" ||       / \ ")
-    if Etat >= 7 :                    
+    if Etat >= 1 :                    
         print("/||           ")
-    if Etat >= 8 :
+    if Etat >= 0 :
         print("==============\n")
 
 def commandesPlay() :
@@ -57,8 +57,7 @@ def AffichageIntro():
     print("| |              | || |              | || |              | || |              | || |              | |\n")
     print("| '--------------' || '--------------' || '--------------' || '--------------' || '--------------' |\n")
     print("'----------------'  '----------------'  '----------------'  '----------------'  '----------------'\n")
-    print("""
-          
+    print(""" 
     Commandes :
     -Jouer : Commence le jeux du Pendu\n
     -Score : Affiche les scores\n
