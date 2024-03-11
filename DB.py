@@ -126,6 +126,7 @@ def AfficherScoresBase():
     # Fermeture de la connexion
     conn.close()
 
+
 def AfficherScoresAlphabetique():
     '''Affiche les scores des joueurs ordonnés par ordre alphabétique des noms d'utilisateur'''
     # Se connecter à la base de données
@@ -192,7 +193,6 @@ def AfficherPartiesParDifficulte():
 
     # Fermer la connexion
     conn.close()
-
 
 
 def RemplirTableMotDepuisFichier(nom_fichier):
